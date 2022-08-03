@@ -7,6 +7,8 @@ const watchFolders = [
     './components/**/*.js',
     './data/*.js',
     './data/**/*.js',
+    './models/*.js',
+    './models/**/*.js',
 ];
 
 gulp.task('concatScripts', function() {
