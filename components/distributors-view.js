@@ -1,11 +1,11 @@
 app.components.distributorsView = () => {
-    app.data.pageTitle = 'Distributors';
+    var breadcrumbs = app.render('breadcrumbs', {items: [{text: 'Distributors'}]});
     
     return {
         template: `
             <div>
-                <h1>Distributors</h1>
-                ${app.render('distributorsList')};
+                ${app.render('headingBar', {title: 'Distributors', breadcrumbs: breadcrumbs})}
+                ${app.render('distributorsList')}
             </div>
         `
     }

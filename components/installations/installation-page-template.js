@@ -13,8 +13,7 @@ app.components.installationPageTemplate = () => {
         {text: 'Installations', url: '/installations'},
         {text: inst.name}
     ];
-
-    app.data.pageTitle = currentSection + ' | ' + inst.name;
+    var breadcrumbs = app.render('breadcrumbs', {items: bcItems});
 
     if (!app.data.user.customer_id) {
         bcItems = [
@@ -32,8 +31,8 @@ app.components.installationPageTemplate = () => {
     return {
         template: `
             <div>
-                <h1>${inst.name}</h1>
-                ${app.render('breadcrumbs', {items: bcItems})}
+                ${app.render('headingBar', {title: inst.name, breadcrumbs: breadcrumbs, seoPageTitle: currentSection + ' | ' + inst.name})}
+
                 <div class="grid grid-1-3">
                     ${app.render('subnav', {items: subnavItems})}
                     <div>

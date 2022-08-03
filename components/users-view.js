@@ -1,10 +1,10 @@
 app.components.usersView = () => {
-    app.data.pageTitle = 'Users';
+    var breadcrumbs = app.render('breadcrumbs', {items: [{text: 'Users'}]});
     
     return {
         template: `
             <div>
-                <h1>Users</h1>
+                ${app.render('headingBar', {title: 'Users', breadcrumbs: breadcrumbs})}
                 ${app.render('usersList')}
             </div>
         `

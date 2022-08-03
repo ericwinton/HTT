@@ -20,7 +20,7 @@ app.components.root = () => {
             body {
                 padding: 0;
                 margin: 0;
-                font-family: Arial;
+                font-family: 'Roboto', Arial, sans-serif;
             }
 
             a {
@@ -126,7 +126,6 @@ app.components.root = () => {
                 display: block;
                 font-size: 14px;
                 margin-bottom: 4px;
-                font-weight: bold;
             }
 
             fieldset {

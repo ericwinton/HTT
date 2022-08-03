@@ -1,6 +1,7 @@
 app.components.hardwareView = () => {
     var headers = [];
     var rows = '';
+    var breadcrumbs = app.render('breadcrumbs', {items: [{text: 'Hardware'}]});
 
     app.data.pageTitle = 'Hardware';
 
@@ -8,6 +9,8 @@ app.components.hardwareView = () => {
         headers = ['Name', 'Model', 'Installation', 'Stackup'];
 
         app.data.pageTitle = 'RTU Hardware';
+
+        breadcrumbs = app.render('breadcrumbs', {items: [{text: 'Hardware', url: '/hardware'}, {text: 'RTU Hardware', url: '/hardware/rtus'}]});
 
         app.data.rtus.forEach(rtu => {
             var installation = app.data.installations.find(inst => inst.id === rtu.installation_id);
@@ -27,6 +30,8 @@ app.components.hardwareView = () => {
 
         app.data.pageTitle = 'Stackup Hardware';
 
+        breadcrumbs = app.render('breadcrumbs', {items: [{text: 'Hardware', url: '/hardware'}, {text: 'Stackup Hardware', url: '/hardware/stackups'}]});
+
         app.data.stackups.forEach(stackup => {
             var rtu = app.data.rtus.find(rtu => rtu.id === stackup.rtu_id);
             var installation = app.data.installations.find(inst => inst.id === rtu.installation_id);
@@ -45,9 +50,8 @@ app.components.hardwareView = () => {
     return {
         template: `
             <div>
-                <h1>Hardware</h1>
+                ${app.render('headingBar', {title: 'Hardware', breadcrumbs: breadcrumbs})}
                 <p><a href="/hardware/rtus">RTUs</a> | <a href="/hardware/stackups">Stackups</a></p>
-
                 ${app.render('table', {headers: headers, rows: rows})}
             </div>
         `

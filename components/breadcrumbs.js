@@ -17,7 +17,7 @@ app.components.breadcrumbs = ({items}) => {
         styles: `
             .breadcrumbs.list-unstyled {
                 font-size: 14px;
-                margin-bottom: 30px;
+                margin-bottom: 15px;
 
                 li {
                     margin-right: 8px;

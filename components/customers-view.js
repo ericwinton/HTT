@@ -1,7 +1,6 @@
 app.components.customersView = () => {
     var rows = '';
-
-    app.data.pageTitle = 'Customers';
+    var breadcrumbs = app.render('breadcrumbs', {items: [{text: 'Customers'}]});
 
     app.data.customers.forEach(cust => {
         var dist = app.data.distributors.find(d => d.id === cust.distributor_id);
@@ -17,7 +16,7 @@ app.components.customersView = () => {
     return {
         template: `
             <div>
-                <h1>Customers</h1>
+                ${app.render('headingBar', {title: 'Customers', breadcrumbs: breadcrumbs})}
                 ${app.render('table', {headers: ['Name', 'Distributor'], rows: rows})}
             </div>
         `

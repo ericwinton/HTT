@@ -1,18 +1,17 @@
 app.components.customerDetail = () => {
     var customer = app.data.customers.find(cust => cust.id === +app.url.mapped.custId);
     var installations = app.data.installations.filter(inst => inst.customer_id === customer.id);
+    var breadcrumbs = app.render('breadcrumbs', {items: [
+        {text: 'Customers', url: '/customers'},
+        {text: customer.name}
+    ]});
 
     app.data.pageTitle = customer.name;
 
     return {
         template: `
             <div>
-                <h1>${customer.name}</h1>
-
-                ${app.render('breadcrumbs', {items: [
-                    {text: 'Customers', url: '/customers'},
-                    {text: customer.name}
-                ]})}
+                ${app.render('headingBar', {title: customer.name, breadcrumbs: breadcrumbs})}
 
                 <h2>Distributor</h2>
                 ${app.render('distributorsList', {customer})}

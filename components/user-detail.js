@@ -3,8 +3,10 @@ app.components.userDetail = () => {
     var roleOptions = '';
     var profilePic = (user.image) ? user.image : app.data.noProfile;
     var customerField = '';
-
-    app.data.pageTitle = user.first_name + ' ' + user.last_name;
+    var breadcrumbs = app.render('breadcrumbs', {items: [
+        {text: 'Users', url: '/users'},
+        {text: `${user.first_name} ${user.last_name}`}
+    ]});
 
     if (!app.data.user.customer_id) {
         var customerOptions = '';
@@ -32,15 +34,9 @@ app.components.userDetail = () => {
     return {
         template: `
             <div>
-                <h1>${user.first_name} ${user.last_name}</h1>
-
-                ${app.render('breadcrumbs', {items: [
-                    {text: 'Users', url: '/users'},
-                    {text: `${user.first_name} ${user.last_name}`}
-                ]})}
+                ${app.render('headingBar', {title: `${user.first_name} ${user.last_name}`, breadcrumbs: breadcrumbs})}
 
                 <div class="form-container">
-
                     <form>
                         <div class="form-group">
                             <a href="#" onclick="app.run(event, 'editProfilePic')"><img class="profile-pic-lg rounded" src="${profilePic}"></a>
