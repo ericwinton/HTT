@@ -11,19 +11,23 @@ var app = new ReadyJS({
         },
         {
             paths: ['/', '/customers'],
-            component: 'customersView'
+            component: 'customersView',
+            httRoute: true
         },
         {
             paths: ['/customers/:custId'],
-            component: 'customerDetail'
+            component: 'customerDetail',
+            httRoute: true
         },
         {
             paths: ['/distributors'],
-            component: 'distributorsView'
+            component: 'distributorsView',
+            httRoute: true
         },
         {
             paths: ['/distributors/:distId'],
-            component: 'distributorDetail'
+            component: 'distributorDetail',
+            httRoute: true
         },
         {
             paths: ['/installations'],
@@ -40,15 +44,20 @@ var app = new ReadyJS({
         },
         {
             paths: ['/hardware', '/hardware/:hardwareType'],
-            component: 'hardwareView'
+            component: 'hardwareView',
+            httRoute: true
         },
         {
-            paths: ['/users', '/htt-users'],
+            paths: ['/users'],
             component: 'usersView'
         },
         {
-            paths: ['/users/:userId', '/htt-users/:userId'],
+            paths: ['/users/:userId'],
             component: 'userDetail'
+        },
+        {
+            paths: ['/404'],
+            component: 'pageNotFound'
         }
     ],
     data: {
@@ -67,6 +76,11 @@ var app = new ReadyJS({
             { id: 9, name: 'PLC Register', slug: 'plc-register' },
         ]
     },
+    functions: {
+        isHTT: () => {
+            if (app.data.user.customer_id) { return false; }
+        }
+    },
     afterRouteChange: () => {
         var user = JSON.parse(sessionStorage.getItem('htt_user'));
 
@@ -74,6 +88,10 @@ var app = new ReadyJS({
 
         if (!user && app.url.path !== '/login') {
             app.newRoute('/login');
+        }
+        
+        if (app.route.httRoute && app.data.user.customer_id) {
+            app.newRoute('/404');
         }
     }
 });

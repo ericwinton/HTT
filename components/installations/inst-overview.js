@@ -12,12 +12,17 @@ app.components.instOverview = ({inst}) => {
         template: `
             <div>
                 <h2>Overview</h2>
-                <table width="100%">
-                    <tr><td>Name</td><td>${inst.name}</td></tr>
-                    <tr><td>Address</td><td>${inst.address} ${inst.city}, ${inst.state} ${inst.zip}</td></tr>
-                    <tr><td>RTU Model</td><td>${inst.rtu_model}</td></tr>
-                    <tr><td>Signal Strength</td><td>${inst.signal_strength} dB (<a href="#" onclick="app.run(event, 'viewSignalStrength')">View History</a>)</td></tr>
-                </table>
+                <div class="form-container">
+                    <form onsubmit="app.run(event, 'saveInst')">
+                        ${app.render('formField', {label: 'Name', name: 'name', value: inst.name, required: true})}
+                        ${app.render('formField', {label: `Address (<a target="_blank" href="https://maps.google.com?q=${inst.lat}, ${inst.lng}">Map</a>)`, name: 'address', value: `${inst.address} ${inst.city}, ${inst.state} ${inst.zip}`})}
+                        ${app.render('formField', {label: 'Latitude', name: 'lat', value: inst.lat})}
+                        ${app.render('formField', {label: 'Longitude', name: 'lng', value: inst.lng})}
+                        ${app.render('formField', {label: 'RTU Model', name: 'rtu_model', value: inst.rtu_model})}
+                        ${app.render('formField', {label: 'Signal Strength (<a href="#" onclick="app.run(event, \'viewSignalStrength\', \'instOverview\')">View History</a>)', name: 'signal_strength', value: inst.signal_strength, disabled: true})}
+                        <button type="submit" class="btn">Save</button>    
+                    </form>
+                </div>
                 ${signalStrengthModal}
             </div>
         `,
@@ -26,6 +31,11 @@ app.components.instOverview = ({inst}) => {
             viewSignalStrength: (e) => {
                 e.preventDefault();
                 app.update('showSignalStrengthModal', true);
+            },
+
+            saveInst: (e) => {
+                e.preventDefault();
+                alert('Saving installation...');
             }
         }
     }

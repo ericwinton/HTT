@@ -1,5 +1,6 @@
 app.components.breadcrumbs = ({items}) => {
     var bcList = '';
+    var bcHomeLink = (app.data.user.customer_id) ? '/installations' : '/';
 
     items.forEach(item => {
         bcLink = (item.url) ? `<a href="${item.url}">${item.text}</a>` : item.text;
@@ -9,7 +10,7 @@ app.components.breadcrumbs = ({items}) => {
     return {
         template: `
             <ul class="list-unstyled list-inline breadcrumbs">
-                <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li><a href="${bcHomeLink}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
                 ${bcList}
             </ul>
         `,

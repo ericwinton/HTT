@@ -1,14 +1,15 @@
 app.components.formField = (props) => {
     var input = '';
-    var label = props.label ? `<label>${props.label}</label>` : '';
     var name = props.name ? ` name="${props.name}"` : '';
     var type = props.type || 'text';
     var value = props.value || '';
     var placeholder = props.placeholder ? ` placeholder="${placeholder}"` : '';
     var required = (props.required) ? ' required' : '';
+    var requiredLabel = (props.required) ? ' *' : '';
     var disabled = (props.disabled) ? ' disabled' : '';
     var events = '';
     var selectedValue = props.selectedValue || '';
+    var label = props.label ? `<label>${props.label}${requiredLabel}</label>` : '';
 
     if (props.events) {
         props.events.forEach((ev) => {
