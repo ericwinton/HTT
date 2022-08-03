@@ -1,0 +1,52 @@
+app.data.users = [
+    {
+        id: 1,
+        first_name: 'Eric',
+        last_name: 'Winton',
+        username: 'ewinton',
+        email: 'eric.winton@htt.io',
+        phone: '(555) 555-5555',
+        role_id: 1,
+        image: 'https://avatars.githubusercontent.com/u/7229881'
+    },
+    {
+        id: 2,
+        first_name: 'Alex',
+        last_name: 'Admin',
+        username: 'alexadmin',
+        email: 'alex.admin@gmail.com',
+        phone: '(555) 555-5555',
+        role_id: 2,
+        customer_id: 1,
+    },
+    {
+        id: 3,
+        first_name: 'Suzie',
+        last_name: 'Supervisor',
+        username: 'suziesupervisor',
+        email: 'suzie.supervisor@gmail.com',
+        phone: '(555) 555-5555',
+        role_id: 3,
+        customer_id: 3,
+    },
+    {
+        id: 4,
+        first_name: 'Olaf',
+        last_name: 'Operator',
+        username: 'olafoperator',
+        email: 'olaf.operator@gmail.com',
+        phone: '(555) 555-5555',
+        role_id: 4,
+        customer_id: 2,
+    },
+    {
+        id: 5,
+        first_name: 'Vicky',
+        last_name: 'Viewer',
+        username: 'vickyviewer',
+        email: 'vicky.viewer@gmail.com',
+        phone: '(555) 555-5555',
+        role_id: 5,
+        customer_id: 1,
+    }
+];
