@@ -38,6 +38,7 @@ app.components.form = ({model, data}) => {
         `,
 
         onFirstRender: async (el) => {
+            // pre-fill all related fields
             var relFields = document.querySelectorAll('input[type="hidden"]');
             var relData = data;
 
