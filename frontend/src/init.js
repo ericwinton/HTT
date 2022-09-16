@@ -137,7 +137,6 @@ var app = new ReadyJS({
     ],
     data: {
         noProfile: '/assets/images/no-profile.jpg',
-        showSignalStrengthModal: false,
         instSections: [
             {title: 'Overview', slug: 'installations'}, 
             {title: 'Alarms', slug: 'alarms'}, 
@@ -252,7 +251,7 @@ var app = new ReadyJS({
             app.newRoute('/login');
         }
         
-        if (app.route.httRoute && app.data.user.customer) {
+        if (!app.route || app.route.httRoute && app.data.user.customer) {
             app.newRoute('/404');
         }
     }

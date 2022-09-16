@@ -3,7 +3,7 @@ app.components.pageNotFound = () => {
 
     return {
         template: `
-            <p>${app.data.pageTitle}</p>
+            <h1>${app.data.pageTitle}</h1>
         `,
     }
 }
