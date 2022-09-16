@@ -3,12 +3,8 @@ const concat = require('gulp-concat');
 const express = require('./app.js')
 const watchFolders = [
     './frontend/src/init.js', 
-    './frontend/src/route-data/*.js', 
-    './frontend/src/route-data/**/*.js', 
     './frontend/src/components/*.js', 
     './frontend/src/components/**/*.js',
-    './frontend/src/data/*.js',
-    './frontend/src/data/**/*.js',
     './frontend/src/models/*.js',
     './frontend/src/models/**/*.js',
 ];
