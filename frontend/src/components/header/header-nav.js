@@ -59,6 +59,7 @@ app.components.headerNav = () => {
                         color: #fff;
                         padding: 15px 30px;
                         font-size: 20px;
+                        display: block;
                     }
                 }
 
@@ -68,6 +69,7 @@ app.components.headerNav = () => {
                     right: 0;
                     left: 0;
                     bottom: 0;
+                    z-index: 100;
                     background: #335589;
                     display: none;
                     color: #fff;
