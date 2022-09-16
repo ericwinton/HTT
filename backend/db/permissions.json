@@ -1,0 +1,42 @@
+[
+    {
+       "id": "2b68fdcd-de22-44eb-9fc4-ee77577f7b9c",
+       "name": "All",
+       "slug": "all"
+    },
+    {
+       "id": "1f3b183f-e005-49d9-9056-784bce299bce",
+       "name": "Create Content",
+       "slug": "create-content"
+    },
+    {
+       "id": "21efa619-eb4f-4b37-9134-01f6b396f747",
+       "name": "Edit Content",
+       "slug": "edit-content"
+    },
+    {
+       "id": "64078a52-16ab-48b6-87cd-ce3c81d4e810",
+       "name": "Delete Content",
+       "slug": "delete-content"
+    },
+    {
+       "id": "7a6b0d59-895d-4fa9-9805-1d3371164e77",
+       "name": "View Content",
+       "slug": "view-content"
+    },
+    {
+       "id": "41e284e7-2b99-4aaf-b6e7-81c07c6c70d7",
+       "name": "Add Users",
+       "slug": "add-users"
+    },
+    {
+       "id": "4848b6f6-bcb0-40b3-afc9-45afec33f57d",
+       "name": "Edit Users",
+       "slug": "edit-users"
+    },
+    {
+       "id": "bfdfe5ce-4bb3-4daa-99d2-d5ca37f8f724",
+       "name": "Delete Users",
+       "slug": "delete-users"
+    }
+ ]

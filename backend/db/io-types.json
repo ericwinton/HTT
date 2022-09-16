@@ -1,0 +1,56 @@
+[
+    {
+       "id": 1,
+       "name": "Analog Input",
+       "slug": "analog-inputs",
+       "model": "analog-inputs"
+    },
+    {
+       "id": 2,
+       "name": "Analog Output",
+       "slug": "analog-outputs",
+       "model": "analog-outputs"
+    },
+    {
+       "id": 3,
+       "name": "Digital Input",
+       "slug": "digital-inputs",
+       "model": "digital-inputs"
+    },
+    {
+       "id": 4,
+       "name": "Digital Output",
+       "slug": "digital-outputs",
+       "model": "digital-outputs"
+    },
+    {
+       "id": 5,
+       "name": "Counter",
+       "slug": "counter",
+       "model": "counters"
+    },
+    {
+       "id": 6,
+       "name": "Pump",
+       "slug": "pump",
+       "model": "pumps"
+    },
+    {
+       "id": 7,
+       "name": "Valve",
+       "slug": "valve",
+       "model": "valves"
+    },
+    {
+       "id": 8,
+       "name": "Rain Counter",
+       "slug": "rain-counters",
+       "model": "rain-counters"
+    },
+    {
+       "id": 9,
+       "name": "PLC Register",
+       "slug": "plc-registers",
+       "model": "plc-registers"
+    }
+]

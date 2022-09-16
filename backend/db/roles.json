@@ -1,0 +1,43 @@
+[
+    {
+       "id": "3ec43df8-83b4-4d81-b4d8-826c2ca97ece",
+       "name": "HTT Admin",
+       "slug": "htt-admin",
+       "permissions": [
+          "2b68fdcd-de22-44eb-9fc4-ee77577f7b9c"
+       ]
+    },
+    {
+       "id": "c1948b87-df37-4749-9779-7525a64a19fb",
+       "name": "Admin",
+       "slug": "admin",
+       "permissions": [
+          "1f3b183f-e005-49d9-9056-784bce299bce",
+          "21efa619-eb4f-4b37-9134-01f6b396f747"
+       ]
+    },
+    {
+       "id": "ecc661a2-96d1-4d33-aac1-84e641270a13",
+       "name": "Supervisor",
+       "slug": "supervisor",
+       "permissions": [
+          "21efa619-eb4f-4b37-9134-01f6b396f747"
+       ]
+    },
+    {
+       "id": "625267a5-51f2-424c-95db-58306ed80424",
+       "name": "Operator",
+       "slug": "operator",
+       "permissions": [
+          "21efa619-eb4f-4b37-9134-01f6b396f747"
+       ]
+    },
+    {
+       "id": "968155d2-01de-4810-bac7-2932dff4a531",
+       "name": "Viewer",
+       "slug": "viewer",
+       "permissions": [
+          "7a6b0d59-895d-4fa9-9805-1d3371164e77"
+       ]
+    }
+ ]

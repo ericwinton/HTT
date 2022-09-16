@@ -2,19 +2,21 @@ const gulp = require('gulp');
 const concat = require('gulp-concat');
 const express = require('./app.js')
 const watchFolders = [
-    './assets/init.js', 
-    './components/*.js', 
-    './components/**/*.js',
-    './data/*.js',
-    './data/**/*.js',
-    './models/*.js',
-    './models/**/*.js',
+    './frontend/src/init.js', 
+    './frontend/src/route-data/*.js', 
+    './frontend/src/route-data/**/*.js', 
+    './frontend/src/components/*.js', 
+    './frontend/src/components/**/*.js',
+    './frontend/src/data/*.js',
+    './frontend/src/data/**/*.js',
+    './frontend/src/models/*.js',
+    './frontend/src/models/**/*.js',
 ];
 
 gulp.task('concatScripts', function() {
     return gulp.src(watchFolders)
         .pipe(concat('app.min.js'))
-        .pipe(gulp.dest('./assets'));
+        .pipe(gulp.dest('./frontend/dist'));
 });
 
 gulp.task('watch', function() {
