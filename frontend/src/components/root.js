@@ -6,6 +6,7 @@ app.components.root = () => {
             <div class="container">
                 ${header}
                 ${app.render('route')}
+                ${app.render('toast')}
             </div>
         `,
 

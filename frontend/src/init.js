@@ -221,8 +221,10 @@ var app = new ReadyJS({
                 if (app.url.pathArray[1] === 'new') {
                     app.newRoute('/' + collection + '/' + resJson.data.id);
                 } else {
-                    alert('Item Saved');
+                    app.functions.toast('Item Saved');
                 }
+            } else {
+                app.functions.toast(resJson.message, 'Error');
             }
         },
         delete: async (e, collection, id) => {
@@ -240,6 +242,9 @@ var app = new ReadyJS({
         },
         toCamelCase: (str) => {
             return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+        },
+        toast: (message, status = 'Success') => {
+            app.components.toast().functions.open(message, status);
         }
     },
     afterRouteChange: () => {

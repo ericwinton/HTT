@@ -52,7 +52,6 @@ app.components.form = ({model, data}) => {
                 for (var i = 0; i < ids.length; i++) {
                     var id = ids[i];
                     var record = await app.functions.getById(relModel, id);
-                    console.log(record);
                     relData[field.name] = record;
                 }
             }
