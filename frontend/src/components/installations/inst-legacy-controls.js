@@ -6,14 +6,16 @@ app.routeData.instLegacyControls = async () => {
 app.components.instLegacyControls = () => {
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>Legacy Controls</h2>
-                        ${app.render('table', {model: 'legacyControls'})}
-                    </div>
-                `
-            })}
+            <div class="inst-legacy-controls">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>Legacy Controls</h2>
+                            ${app.render('table', {model: 'legacy-controls'})}
+                        </div>
+                    `
+                })}
+            </div>
         `
     }
 };

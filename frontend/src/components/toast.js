@@ -47,7 +47,7 @@ app.components.toast = () => {
         `,
 
         functions: {
-            open: (message, status) => {
+            open: (message, status, callback) => {
                 var toast = document.querySelector('.toast');
 
                 toast.querySelector('.toast-message').innerText = message;
@@ -66,7 +66,11 @@ app.components.toast = () => {
                 if (status === 'Success') {
                     setTimeout(() => {
                         app.components.toast().functions.closeToast(null, toast);
-                    }, 4000);
+
+                        if (callback) {
+                            callback();
+                        }
+                    }, 3000);
                 }
             },
 

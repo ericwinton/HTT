@@ -6,14 +6,16 @@ app.routeData.instRtuConfigs = async () => {
 app.components.instRtuConfigs = () => {
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>RTU Configs</h2>
-                        ${app.render('table', {model: 'rtuConfigs'})}
-                    </div>
-                `
-            })}
+            <div class="inst-rtu-configs">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>RTU Configs</h2>
+                            ${app.render('table', {model: 'rtu-configs'})}
+                        </div>
+                    `
+                })}
+            </div>
         `
     }
 };

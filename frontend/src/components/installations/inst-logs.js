@@ -10,14 +10,16 @@ app.routeData.instLogs = async () => {
 app.components.instLogs = () => {
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>Logs</h2>
-                        ${app.render('table', {model: 'logs', data: null, link: `/logs/{{id}}`})}
-                    </div>
-                `
-            })}
+            <div class="inst-logs">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>Logs</h2>
+                            ${app.render('table', {model: 'logs', data: null, link: `/logs/{{id}}`})}
+                        </div>
+                    `
+                })}
+            </div>
             
         `
     }

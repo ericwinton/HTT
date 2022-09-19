@@ -6,14 +6,16 @@ app.routeData.instTelemetryData = async () => {
 app.components.instTelemetryData = () => {
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>Telemtetry Data</h2>
-                        ${app.render('table', {model: 'telemetryData'})}
-                    </div>
-                `
-            })}
+            <div class="inst-telemetry-data">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>Telemtetry Data</h2>
+                            ${app.render('table', {model: 'telemetry-data'})}
+                        </div>
+                    `
+                })}
+            </div>
         `
     }
 };

@@ -196,55 +196,57 @@ var app = new ReadyJS({
                 return {};
             }
         },
-        save: async (e, collection, id) => {
-            e.preventDefault();
-            var form = e.target;
-            var formData = new FormData(form);
-            var data = {};
-            var method = form.getAttribute('method');
-            var idPath = (id) ? '/' + id : '';
-
-            formData.forEach((value, key) => data[key] = value);
-
-            var res = await fetch('/api/' + collection + idPath, {
-                method: method,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            var resJson = await res.json();
-
-            if (resJson.status === 200) {
-                if (app.url.pathArray[1] === 'new') {
-                    app.newRoute('/' + collection + '/' + resJson.data.id);
-                } else {
-                    app.functions.toast('Item Saved');
-                }
-            } else {
-                app.functions.toast(resJson.message, 'Error');
-            }
-        },
-        delete: async (e, collection, id) => {
-            e.preventDefault();
-
-            if (confirm('Are you sure you would like to delete this ' + collection + ' item?')) {
-                var res = await fetch('/api/' + collection + '/' + id, { method: 'DELETE' });
-                var resJson = await res.json();
-
-                if (resJson.status === 200) {
-                    var newData = app.data[collection.replace(/-/g, '_')].filter(item => item.id !== id);
-                    app.update(collection, newData);
-                }
-            }
-        },
         toCamelCase: (str) => {
             return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
         },
         toast: (message, status = 'Success') => {
             app.components.toast().functions.open(message, status);
+        },
+        loadStylesheets: (stylesheets) => {
+            stylesheets.forEach(ssSrc => {
+                if (!document.querySelector('link[href="' + ssSrc + '"]')) {
+                    var ss = document.createElement('link');
+                    ss.rel = 'stylesheet';
+                    ss.href = ssSrc;
+                    document.head.appendChild(ss);
+                }
+            });
+        },
+        loadScripts: (scripts) => {
+            return new Promise((resolve, reject) => {
+                var index = 0;
+
+                function loaded() {
+                    console.log('loaded');
+                    index++;
+
+                    if (index < scripts.length) {
+                        console.log('load the next');
+                        //loadScript(scripts[index]);
+                    } else {
+                        console.log('calling back');
+                        resolve();
+                    }
+                }
+
+                function loadScript(scriptSrc) {
+                    console.log('loading ', scriptSrc);
+                    if (document.querySelector('script[src="' + scriptSrc + '"]')) {
+                        console.log('exists: ', scriptSrc);
+                        loaded();
+                    } else {
+                        console.log('does not exist: ', scriptSrc);
+                        var s = document.createElement('script');
+                        s.src = scriptSrc;
+                        s.onload = () => {
+                            loaded();
+                        };
+                        document.body.appendChild(s);
+                    }
+                }
+
+                loadScript(scripts[0]);
+            });
         }
     },
     afterRouteChange: () => {

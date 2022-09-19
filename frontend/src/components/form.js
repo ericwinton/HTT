@@ -31,11 +31,47 @@ app.components.form = ({model, data}) => {
 
     return {
         template: `
-            <form onsubmit="app.functions.save(event, '${model.replace(/_/, '-')}'${itemIdArg})" method="${method}">
+            <form onsubmit="app.run(event, 'save')" method="${method}">
                 ${formFields}
                 <button type="submit" class="btn">Save</button>
             </form>
         `,
+
+        functions: {
+            save: async (e) => {
+                e.preventDefault();
+                var form = e.target;
+                var fields = form.querySelector('input, textarea, select');
+                console.log(fields);
+                var formData = new FormData(form);
+                var saveData = {};
+                var method = form.getAttribute('method');
+                var idPath = (data.id) ? '/' + data.id : '';
+    
+                formData.forEach((value, key) => saveData[key] = value);
+    
+                var res = await fetch('/api/' + model + idPath, {
+                    method: method,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(saveData)
+                });
+    
+                var resJson = await res.json();
+    
+                if (resJson.status === 200) {
+                    if (app.url.pathArray[1] === 'new' || app.url.pathArray[2] === 'new') {
+                        app.newRoute('/' + model + '/' + resJson.data.id);
+                    } else {
+                        app.functions.toast('Item Saved', 'Success');
+                    }
+                } else {
+                    app.functions.toast(resJson.message, 'Error');
+                }
+            }
+        },
 
         onFirstRender: async (el) => {
             // pre-fill all related fields

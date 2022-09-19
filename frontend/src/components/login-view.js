@@ -26,7 +26,7 @@ app.components.loginView = () => {
         styles: `
             .login {
                 width: 360px;
-                margin: 0 auto;
+                margin: 15px auto;
 
                 .login-message-error {
                     background: #f1e6e8;

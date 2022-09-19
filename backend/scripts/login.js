@@ -33,7 +33,7 @@ module.exports = (req, res) => {
         } else {
             return res.json({
                 status: 'Error',
-                message: 'Role not found (id: ' + user.role + ')'
+                message: 'Role not found (id: ' + user.role.id + ')'
             });
         }
     } else {

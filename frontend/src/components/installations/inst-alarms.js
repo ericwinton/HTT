@@ -10,14 +10,16 @@ app.routeData.instAlarms = async () => {
 app.components.instAlarms = () => {
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>Alarms</h2>
-                        ${app.render('table', { model: 'alarms', data: app.data.alarms, detailLink: `/alarms/{{id}}`})}
-                    </div>
-                `
-            })}
+            <div class="inst-alarms">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>Alarms</h2>
+                            ${app.render('table', { model: 'alarms', data: app.data.alarms, detailLink: `/alarms/{{id}}`})}
+                        </div>
+                    `
+                })}
+            </div>
         `
     }
 };

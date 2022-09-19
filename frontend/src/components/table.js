@@ -1,13 +1,14 @@
 app.components.table = (props) => {
-    var model = app.models[props.model];
+    var model = props.model;
+    var thisModel = app.models[model];
 
-    if (!model) return { template: `<p>Model not found: ${props.model}</p>` }
+    if (!thisModel) return { template: `<p>Model not found: ${model}</p>` }
 
     var output = '<p>No results found</p>';
-    var parentModel = (model.extends) ? app.models[model.extends] : null;
+    var parentModel = (thisModel.extends) ? app.models[thisModel.extends] : null;
     var parentModelFields = parentModel?.fields || [];
     var data = props.data;
-    var fields = model.fields;
+    var fields = thisModel.fields;
     var allFields = parentModelFields.concat(fields);
     var exclude = props.exclude || [];
     var headers = '';
@@ -26,7 +27,7 @@ app.components.table = (props) => {
 
         data.forEach(record => {
             var cells = '';
-            var itemModel = record._type || props.model;
+            var itemModel = record._type || model;
             
             includedFields.forEach(async (field, i) => {
                 var value = record[field.name] || '';
@@ -58,8 +59,8 @@ app.components.table = (props) => {
             });
 
             rows += `
-                <tr>
-                    <td class="trash"><a href="#" onclick="app.functions.delete(event, '${itemModel}', '${record.id}')"><i class="fa fa-trash color-red" aria-hidden="true"></i></a></td>
+                <tr data-id="${record.id}" data-model="${itemModel}">
+                    <td class="trash"><a href="#" onclick="app.run(event, 'delete')"><i class="fa fa-trash color-red" aria-hidden="true"></i></a></td>
                     ${cells}
                 </tr>
             `;
@@ -136,7 +137,27 @@ app.components.table = (props) => {
                 var header = e.target.closest('th');
                 var columnName = header.dataset.name;
                 var direction = (header.dataset.sort) ? header.dataset.sort : 'asc';
-            }
+            },
+
+            delete: async (e) => {
+                e.preventDefault();
+                var id = e.target.closest('tr').dataset.id;
+                var table = e.target.closest('.table');
+                var itemModel = e.target.closest('tr').dataset.model;
+    
+                if (confirm('Are you sure you would like to delete this ' + model + ' item?')) {
+                    var res = await fetch('/api/' + itemModel + '/' + id, { method: 'DELETE' });
+                    var resJson = await res.json();
+    
+                    if (resJson.status === 200) {
+                        app.functions.toast('Item Deleted');
+                        props.data = props.data.filter(item => item.id !== id);
+                        app.render('table', props, table);
+                    } else {
+                        app.functions.toast(resJson.message, 'Error');
+                    }
+                }
+            },
         }
     }
 };

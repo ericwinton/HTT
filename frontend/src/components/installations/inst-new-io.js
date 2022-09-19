@@ -113,16 +113,18 @@ app.components.instNewIO = () => {
 
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <form>
-                            ${app.render('formField', {label: 'IO Type', type: 'select', name: 'type', required: true, options: ioOpts, value: selectedIoValue, events: [{ action: 'onchange', function: 'changeIOType', source: 'instNewIO' }]})}
-                        </form>
-                        ${ioForm}
-                    </div>
-                `
-            })}
+            <div class="inst-new-io">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <form>
+                                ${app.render('formField', {label: 'IO Type', type: 'select', name: 'type', required: true, options: ioOpts, value: selectedIoValue, events: [{ action: 'onchange', function: 'changeIOType', source: 'instNewIO' }]})}
+                            </form>
+                            ${ioForm}
+                        </div>
+                    `
+                })}
+            </div>
         `,
 
         functions: {

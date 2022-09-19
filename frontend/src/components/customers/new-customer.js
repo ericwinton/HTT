@@ -5,7 +5,7 @@ app.components.newCustomer = () => {
         template: `
             <div class="customers">
                 ${app.render('headingBar', {title: 'New Customer', breadcrumbs: breadcrumbs})}
-                ${app.render('form', {model: 'customers', data: app.data.customer})}
+                ${app.render('form', {model: 'customers'})}
             </div>
         `
     }

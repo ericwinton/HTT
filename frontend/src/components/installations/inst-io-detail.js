@@ -10,14 +10,16 @@ app.components.instIODetail = () => {
 
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>${io.name}</h2>
-                        ${app.render('form', {model: app.url.mapped.ioType, data: io})}
-                    </div>
-                `
-            })}
+            <div class="inst-io-detail">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>${io.name}</h2>
+                            ${app.render('form', {model: app.url.mapped.ioType, data: io})}
+                        </div>
+                    `
+                })}
+            </div>
         `
     }
 };

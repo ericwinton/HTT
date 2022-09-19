@@ -82,8 +82,5 @@ app.models['analog-inputs'] = {
         name: 'min_display_value',
         type: 'number',
         data_type: 'int'
-    }],
-    typeSlug: (id) => {
-        return app.data.ioTypes.find(type => type.id === id);
-    }
+    }]
 };

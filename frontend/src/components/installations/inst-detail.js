@@ -6,14 +6,16 @@ app.routeData.instDetail = async () => {
 app.components.instDetail = () => {
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>Overview</h2>
-                        ${app.render('form', {model: 'installations', data: app.data.installation})}
-                    </div>
-                `
-            })}
+            <div class="inst-detail">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>Overview</h2>
+                            ${app.render('form', {model: 'installations', data: app.data.installation})}
+                        </div>
+                    `
+                })}
+            </div>
         `
     }
 };

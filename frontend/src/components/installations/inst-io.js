@@ -29,15 +29,17 @@ app.components.instIO = () => {
 
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>IO</h2>
-                        ${app.render('newBtn', {model: 'io'})}
-                        ${app.render('table', {model: 'io', data: app.data.io, exclude: ['installation']})}
-                    </div>
-                `
-            })}
+            <div class="inst-io">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>IO</h2>
+                            ${app.render('newBtn', {model: 'io'})}
+                            ${app.render('table', {model: 'io', data: app.data.io, exclude: ['installation']})}
+                        </div>
+                    `
+                })}
+            </div>
         `
     }
 };

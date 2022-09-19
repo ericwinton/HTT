@@ -6,14 +6,16 @@ app.routeData.instRtuMessages = async () => {
 app.components.instRtuMessages = () => {
     return {
         template: `
-            ${app.render('instPageTemplate', {
-                mainContent: `
-                    <div>
-                        <h2>RTU Messages</h2>
-                        ${app.render('table', {model: 'rtuMessages'})}
-                    </div>
-                `
-            })}
+            <div class="inst-rtu-messages">
+                ${app.render('instPageTemplate', {
+                    mainContent: `
+                        <div>
+                            <h2>RTU Messages</h2>
+                            ${app.render('table', {model: 'rtu-messages'})}
+                        </div>
+                    `
+                })}
+            </div>
         `
     }
 };

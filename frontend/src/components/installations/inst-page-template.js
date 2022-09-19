@@ -29,7 +29,10 @@ app.components.instPageTemplate = (props) => {
 
         output = `
             <div class="grid grid-1-3">
-                ${app.render('subnav', {items: subnavItems})}
+                <div>
+                    ${app.render('subnav', {items: subnavItems})}
+                    <div id="map"></div>
+                </div>
                 <div>
                     ${props.mainContent}
                 </div>
@@ -48,6 +51,37 @@ app.components.instPageTemplate = (props) => {
                 ${app.render('headingBar', {title: pageTitle, breadcrumbs: breadcrumbs})}
                 ${output}
             </div>
-        `
+        `,
+
+        styles: `
+            #map {
+                height: 250px;
+                margin-bottom: 30px;
+            }
+        `,
+
+        onEveryRender: async () => {
+            if (inst.lat && inst.lng) {
+                app.functions.loadStylesheets(['https://unpkg.com/leaflet@1.7.1/dist/leaflet.css']);
+
+                await app.functions.loadScripts(['https://unpkg.com/leaflet@1.7.1/dist/leaflet.js']);
+
+                const latLng = [parseFloat(inst.lat), parseFloat(inst.lng)];
+
+                const map = L.map("map", {
+                    center: latLng,
+                    zoom: 15
+                });
+
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap'
+                }).addTo(map);
+
+                var marker = L.marker(latLng);
+                marker.bindPopup(inst.name);
+
+                marker.addTo(map);
+            }
+        }
     }
 };
