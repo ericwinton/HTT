@@ -14,9 +14,6 @@ app.components.userDetail = () => {
         template: `
             <div>
                 ${app.render('headingBar', {title: fullName, breadcrumbs: breadcrumbs})}
-
-                <p><a href="#" onclick="app.functions.delete(event, ${user.id})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></p>
-
                 ${app.render('form', {model: 'users', data: user})}
             </div>
         `,

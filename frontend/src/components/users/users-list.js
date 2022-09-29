@@ -4,7 +4,7 @@ app.components.usersList = (props) => {
     return {
         template: `
             <div class="users-list">
-                ${app.render('newBtn', { model: 'users' })}
+                ${app.render('btnGroup', { newBtnUrl: '/users/new' })}
                 ${app.render('table', {model: 'users', data: app.data.users, exclude: exclude, detailLink: '/users/{{id}}'})}
             </div>
         `

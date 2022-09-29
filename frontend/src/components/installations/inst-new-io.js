@@ -1,13 +1,4 @@
-app.routeData.instNewIO = async () => {
-    if (app.url.params.installation) {
-        app.data.installation = await app.functions.getById('installations', app.url.params.installation);
-        app.data.customer = app.data.installation.customer;
-    }
-
-    app.data.ioTypes = await app.functions.get('io-types');
-};
-
-app.components.instNewIO = () => {
+app.components.instNewIO = ({inst}) => {
     var ioForm = '';
     var ioType = app.url.mapped.ioType;
     var ioOpts = [];
@@ -113,23 +104,17 @@ app.components.instNewIO = () => {
 
     return {
         template: `
-            <div class="inst-new-io">
-                ${app.render('instPageTemplate', {
-                    mainContent: `
-                        <div>
-                            <form>
-                                ${app.render('formField', {label: 'IO Type', type: 'select', name: 'type', required: true, options: ioOpts, value: selectedIoValue, events: [{ action: 'onchange', function: 'changeIOType', source: 'instNewIO' }]})}
-                            </form>
-                            ${ioForm}
-                        </div>
-                    `
-                })}
+            <div class="new-io">
+                <form>
+                    ${app.render('formField', {label: 'IO Type', type: 'select', name: 'type', required: true, options: ioOpts, value: selectedIoValue, events: [{ action: 'onchange', function: 'changeIOType', source: 'instNewIO' }]})}
+                </form>
+                ${ioForm}
             </div>
         `,
 
         functions: {
             changeIOType: (e) => {
-                app.newRoute(`/io/${e.target.value}/new?installation=${app.data.installation.id}`);
+                app.newRoute(`/installations/${inst.id}/io/${e.target.value}/new`);
             },
 
             togglePlc: (e) => {

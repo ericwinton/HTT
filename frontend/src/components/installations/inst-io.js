@@ -1,4 +1,4 @@
-app.routeData.instIO = async () => {
+/*app.routeData.instIO = async () => {
     if (app.url.params.installation) {
         app.data.installation = await app.functions.getById('installations', app.url.params.installation);
         app.data.customer = app.data.installation.customer;
@@ -20,25 +20,19 @@ app.routeData.instIO = async () => {
     }
 
     app.data.io = io;
-};
+};*/
 
-app.components.instIO = () => {
+app.components.instIO = ({inst}) => {
     app.data.io.forEach(io => {
-        io.detailLink = `/io/${io._type}/${io.id}`;
+        io.detailLink = `/installations/${inst.id}/io/${io._type}/${io.id}`;
     });
 
     return {
         template: `
             <div class="inst-io">
-                ${app.render('instPageTemplate', {
-                    mainContent: `
-                        <div>
-                            <h2>IO</h2>
-                            ${app.render('newBtn', {model: 'io'})}
-                            ${app.render('table', {model: 'io', data: app.data.io, exclude: ['installation']})}
-                        </div>
-                    `
-                })}
+                <h2>IO</h2>
+                ${app.render('btnGroup', {newBtnUrl: `/installations/${inst.id}/io/new`})}
+                ${app.render('table', {model: 'io', data: app.data.io, exclude: ['installation']})}
             </div>
         `
     }

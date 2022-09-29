@@ -1,5 +1,5 @@
 app.routeData.users = async () => {
-    app.data.users = await app.functions.get('users');
+    app.data.users = await app.functions.get('users', app.url.params);
 }
 
 app.components.users = () => {

@@ -20,8 +20,14 @@ var app = new ReadyJS({
             httRoute: true
         },
         {
-            paths: ['/customers/:custId'],
-            component: 'customerDetail',
+            paths: [
+                '/customers/:custId', 
+                '/customers/:custId/users', 
+                '/customers/:custId/installations',
+                '/customers/:custId/installations/new',
+                '/customers/:custId/installations/map',
+            ],
+            component: 'custPageTemplate',
             httRoute: true
         },
         {
@@ -49,20 +55,14 @@ var app = new ReadyJS({
             httRoute: true
         },
         {
-            paths: ['/installations/:instId'],
-            component: 'instDetail'
-        },
-        {
-            paths: ['/io'],
-            component: 'instIO'
-        },
-        {
-            paths: ['/io/new', '/io/:ioType/new'],
-            component: 'instNewIO'
-        },
-        {
-            paths: ['/io/:ioType/:ioId'],
-            component: 'instIODetail'
+            paths: [
+                '/installations/:instId', 
+                '/installations/:instId/io/:ioType', 
+                '/installations/:instId/io/:ioType/:ioId', 
+                '/installations/:instId/:instSection',
+                '/installations/:instId/:instSection/:instDetailId', 
+            ],
+            component: 'instPageTemplate'
         },
         {
             paths: ['/alarms'],
@@ -137,16 +137,6 @@ var app = new ReadyJS({
     ],
     data: {
         noProfile: '/assets/images/no-profile.jpg',
-        instSections: [
-            {title: 'Overview', slug: 'installations'}, 
-            {title: 'Alarms', slug: 'alarms'}, 
-            {title: 'Logs', slug: 'logs'},
-            {title: 'IO',  slug: 'io'},
-            {title: 'RTU Configs', slug: 'rtu-configs'},
-            {title: 'RTU Messages', slug: 'rtu-messages'},
-            {title: 'Telemetry Data', slug: 'telemetry-data'},
-            {title: 'Legacy Controls', slug: 'legacy-controls'}
-        ],
     },
     functions: {
         isHTT: () => {
@@ -222,7 +212,7 @@ var app = new ReadyJS({
 
                     if (index < scripts.length) {
                         console.log('load the next');
-                        //loadScript(scripts[index]);
+                        loadScript(scripts[index]);
                     } else {
                         console.log('calling back');
                         resolve();

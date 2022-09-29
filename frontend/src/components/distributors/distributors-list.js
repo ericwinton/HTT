@@ -1,13 +1,9 @@
-app.components.distributorsList = () => {
-    var distributors = (app.data.distributor) ? [app.data.distributor] : app.data.distributors;
-
+app.components.distributorsList = (props) => {
     return {
-        watch: ['distributors'],
-
         template: `
             <div class="distributors-list">
-                ${app.render('newBtn', { model: 'distributors' })}
-                ${app.render('table', { model: 'distributors', data: distributors, detailLink: '/distributors/{{id}}' })}
+                ${app.render('btnGroup', { newBtnUrl: '/distributors/new' })}
+                ${app.render('table', { model: 'distributors', data: app.data.distributors, detailLink: '/distributors/{{id}}' })}
             </div>
         `
     }

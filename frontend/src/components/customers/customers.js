@@ -9,7 +9,7 @@ app.components.customers = () => {
         template: `
             <div class="customers">
                 ${app.render('headingBar', {title: 'Customers', breadcrumbs: breadcrumbs})}
-                ${app.render('newBtn', { model: 'customers' })}
+                ${app.render('btnGroup', { newBtnUrl: '/customers/new' })}
                 ${app.render('table', {model: 'customers', data: app.data.customers, detailLink: '/customers/{{id}}'})}
             </div>
         `

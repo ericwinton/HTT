@@ -1,11 +1,7 @@
-app.components.newBtn = ({model, params}) => {
-    var queryParams = params || '';
-
+app.components.newBtn = ({url}) => {
     return {
         template: `
-            <div class="text-right">
-                <p><a href="/${model}/new${queryParams}"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a></p>
-            </div>
+            <li><a class="btn btn-sm" href="${url}"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a></li>
         `
     }
-};
+}

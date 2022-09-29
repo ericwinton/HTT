@@ -1,4 +1,4 @@
-app.components.form = ({model, data}) => {
+app.components.form = ({model, data, type}) => {
     if (!app.models[model]) { return {template: `<p>Model not found: ${model}</p>`} } ;
 
     var formFields = '';
@@ -7,9 +7,8 @@ app.components.form = ({model, data}) => {
     var parentModelFields = parentModel?.fields || [];
     var fields = thisModel.fields;
     var allFields = parentModelFields.concat(fields);
-    var type = (data && data.id) ? 'edit' : 'new';
+    var type = type || 'new';
     var method = (type === 'edit') ? 'PUT' : 'POST';
-    var itemIdArg = (type === 'edit') ? `, '${data.id}'` : '';
 
     allFields.forEach(field => {
         if (!field.disabled) {
@@ -17,7 +16,7 @@ app.components.form = ({model, data}) => {
             var fieldProps = {};
             
             if (data) {
-                fieldVal = (field.type === 'relationship') ? data[field.name] : (data[field.name] !== undefined) ? data[field.name] : '';
+                fieldVal = (field.type === 'relationship' || data[field.name] !== undefined) ? data[field.name] : '';
                 fieldProps = { value: fieldVal };
             }
 
@@ -41,8 +40,6 @@ app.components.form = ({model, data}) => {
             save: async (e) => {
                 e.preventDefault();
                 var form = e.target;
-                var fields = form.querySelector('input, textarea, select');
-                console.log(fields);
                 var formData = new FormData(form);
                 var saveData = {};
                 var method = form.getAttribute('method');

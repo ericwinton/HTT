@@ -11,7 +11,7 @@ app.components.hardware = () => {
             ${app.render('hardwarePageTemplate', {
                 mainContent: `
                     <div>
-                        ${app.render('newBtn', {model: hardwareType})}
+                        ${app.render('btnGroup', {newBtnUrl: `/hardware/${hardwareType}`})}
                         ${app.render('table', {model: hardwareType, data: app.data.hardware, detailLink: `/hardware/${hardwareType}/{{id}}`})}
                     </div>
                 `

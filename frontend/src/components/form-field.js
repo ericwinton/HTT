@@ -65,8 +65,9 @@ app.components.formField = (props) => {
         var relRequired = (value) ? '' : ' required';
 
         // TODO: Combine
+        console.log(value);
         if (value.id) {
-            // editing form
+            // new form - related item
             if (props.rel_type.indexOf('to-one') > -1) {
                 var relDisplayKeyArray = props.rel_display_key.split(' ');
                 var displayTitle = '';
@@ -172,7 +173,7 @@ app.components.formField = (props) => {
         functions: {
             removeResult: (e) => {
                 e.preventDefault();
-                alert('removing');
+                app.render('formField', props);
             },
 
             uploadFile: (e) => {

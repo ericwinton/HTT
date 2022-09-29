@@ -54,6 +54,10 @@ app.components.root = () => {
                 margin-top: 0;
             }
 
+            .margin-bottom {
+                margin-bottom: 15px;
+            }
+
             .container {
                 width: 1200px;
                 max-width: 100%;
@@ -75,7 +79,7 @@ app.components.root = () => {
             }
 
             .grid-1-3 {
-                grid-template-columns: 1fr 3fr;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
                 gap: 30px;
             }
 
@@ -128,6 +132,10 @@ app.components.root = () => {
             .btn {
                 background: #459ce0;
                 color: #fff;
+            }
+
+            .btn-sm {
+                padding: 5px 10px;
             }
 
             form {
